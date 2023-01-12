@@ -1,6 +1,6 @@
 const HeroText = () => {
   return (
-    <div className="h-[500px] px-10 ">
+    <div className="h-[300px] px-10 ">
         <div className="flex flex-col text-white font-poppins">
       <h1 className="text-5xl font-open">Thor: Love and Thunder(2022)</h1>
       <h3 className="my-5 text-gray-400">
