@@ -2,9 +2,11 @@ import react, { useState, useEffect, useContext } from "react";
 import { AppContext } from "../context/AppContext";
 import Search from "./Search";
 import axios from "axios";
+import MovieCard from "./MovieCard";
 
 const MovieSection = () => {
     const { search, setMovies, movies } = useContext(AppContext);
+    const [ titles, setTitles ] = useState([]);
 
   //fetch properties
   useEffect(() => {
@@ -24,7 +26,9 @@ const MovieSection = () => {
         );
         response = await response.json();
         setMovies(response);
+        setTitles(movies.Search);
         console.log(movies);
+        console.log(movies.Search);
     };
     getMovies();
   },[]);
@@ -37,6 +41,9 @@ const MovieSection = () => {
       </div>
       <div>
         <Search />
+      </div>
+      <div className="grid grid-cols-4 m-5 auto-cols-auto">
+      {titles.map(element=><MovieCard image={element.Poster} title={element.Title} description={element.Type} />)}
       </div>
     </div>
   );
