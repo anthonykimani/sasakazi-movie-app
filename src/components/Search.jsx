@@ -1,7 +1,25 @@
+import { useState, useContext } from "react";
+import { AppContext } from "../context/AppContext";
+
 const Search = () => {
+
+    const { setSearch } = useContext(AppContext);
+    const [ query, setQuery ] = useState("")
+
+    const handleInput = (event)=>{
+        const name = event.target.name;
+        const value = event.target.value;
+        return setQuery(value);
+    }
+
+    const handleSetSearch = (event)=>{
+        event.preventDefault();
+        setSearch(query);
+    }
+
   return (
     <div class="flex justify-around">
-      <form>
+      <form onSubmit={handleSetSearch}>
         <div class="max-w-[1200px] w-[100%]">
           <div class="flex space-x-1 items-center mb-2">
             <svg
@@ -24,10 +42,8 @@ const Search = () => {
           </div>
           <div class="flex space-x-4">
             <div class="flex rounded-md overflow-hidden min-w-[500px]">
-              <input type="text" class="rounded-md rounded-r-none  w-[100%]" />
-              <button class="bg-indigo-600 text-white px-6 text-lg font-semibold py-4 rounded-r-md">
-                Go
-              </button>
+              <input type="text" class="rounded-md rounded-r-none  w-[100%]" name="search" onChange={handleInput} />
+              <input type="submit" className="bg-indigo-600 text-white px-6 text-lg font-semibold py-4 rounded-r-md" value="Search" />
             </div>
             <button class="bg-white px-6 text-lg font-semibold py-4 rounded-md">
               Clear
