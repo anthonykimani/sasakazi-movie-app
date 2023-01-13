@@ -25,8 +25,8 @@ const MovieSection = () => {
         }
         );
         response = await response.json();
-        setMovies(response);
-        setTitles(movies.Search);
+        await setMovies(response);
+        await setTitles(movies.Search);
         console.log(movies);
         console.log(movies.Search);
     };
